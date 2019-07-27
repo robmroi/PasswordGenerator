@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Passwords</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/business-frontpage.css" rel="stylesheet">
+
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<!-- Page Content -->
+
+
+<div class="FlexContainerWrapper">
+    <div class="FlexContainer">
+        <div class="FlexItem">
+            <h1 class="my-4" id="password" style="font-size:5vw"></h1>
+            <button class="js-copy-bob-btn">Set clipboard to BOB</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    .FlexContainerWrapper {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .FlexContainer {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100%;
+        width: 600px;
+    }
+
+    .FlexItem {
+        box-sizing: border-box;
+        max-width: 90%;
+    }
+
+
+</style>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+    let passwordField = document.getElementById("password");
+    passwordField.innerText = "Banana";
+    let password = "";
+    let array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    for (let i=0; i<16; i++) {
+        let randomNumber = Math.random()*array.length-1;
+        let random = parseInt(randomNumber);
+        password += array[random];
+
+    }
+    passwordField.innerText = password.replace("\n", "");
+
+    function fallbackCopyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            let successful = document.execCommand('copy');
+            let msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+
+        document.body.removeChild(textArea);
+    }
+    function copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(function() {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+            console.error('Async: Could not copy text: ', err);
+        });
+    }
+
+    let copyBobBtn = document.querySelector('.js-copy-bob-btn');
+
+    copyBobBtn.addEventListener('click', function(event) {
+        copyTextToClipboard(passwordField.innerText);
+    });
+
+
+</script>
+
+</body>
+
+</html>
