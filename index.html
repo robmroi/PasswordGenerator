@@ -134,8 +134,25 @@
 
     let copyBobBtn = document.querySelector('.js-copy-bob-btn');
 
-    copyBobBtn.addEventListener('click', function(event) {
+    copyBobBtn.addEventListener('click', function() {
         copyTextToClipboard(passwordField.innerText);
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).keypress(function(event) {
+        let char = String.fromCharCode(event.which).toUpperCase();
+        switch (char) {
+            case "C":
+                copyTextToClipboard(passwordField.innerText);
+                break;
+            case "R":
+                generatePassword();
+                break;
+            case "S":
+                alert("S");
+                break;
+        }
     });
 </script>
 
