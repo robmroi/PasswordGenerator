@@ -27,12 +27,15 @@
             <table>
                 <tr>
                     <td><h1 class="my-4" id="password" style="font-size:5vw"></h1></td>
-                    <td><button class="js-copy-bob-btn" id="copy"><img src="images/ic_content_copy_48px.png" alt="Copy"></button></td>
+                    <td><button class="js-copy-bob-btn" id="copy"><img src="images/Copy.png" alt="Copy"></button></td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
+
+<button onclick="openSettings()" class="settingsButton"><img src="images/Settings.png" alt="Copy"></button>
+
 
 <style>
     html, body {
@@ -63,7 +66,7 @@
         width: 50px !important;
         height: 50px !important;
         background-color: white;
-        border-color: transparent;
+        border: none;
     }
 
     img {
@@ -76,6 +79,20 @@
 
     td {
         border-spacing: 10px;
+    }
+
+    .settingsButton {
+        width: 50px !important;
+        height: 50px !important;
+
+        background-color: white;
+
+        border: none;
+        border-radius: 5px;
+
+        right: 1%;
+        bottom: 1%;
+        position:absolute;
     }
 </style>
 
@@ -90,7 +107,8 @@
         passwordField.innerText = "Banana";
         let password = "";
         let array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
         for (let i=0; i<16; i++) {
             let randomNumber = Math.random()*array.length-1;
@@ -134,7 +152,8 @@
 
     let copyBobBtn = document.querySelector('.js-copy-bob-btn');
 
-    copyBobBtn.addEventListener('click', function() {
+    copyBobBtn.addEventListener('click', function(event) {
+        let passwordField = document.getElementById("password");
         copyTextToClipboard(passwordField.innerText);
     });
 </script>
@@ -144,16 +163,23 @@
         let char = String.fromCharCode(event.which).toUpperCase();
         switch (char) {
             case "C":
+                let passwordField = document.getElementById("password");
                 copyTextToClipboard(passwordField.innerText);
                 break;
             case "R":
                 generatePassword();
                 break;
             case "S":
-                alert("S");
+                openSettings();
                 break;
         }
     });
+</script>
+
+<script>
+    function openSettings() {
+
+    }
 </script>
 
 </body>
