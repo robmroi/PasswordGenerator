@@ -13,11 +13,6 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/business-frontpage.css" rel="stylesheet">
-
-    <link href="style.css" rel="stylesheet">
-
 </head>
 
 
@@ -29,8 +24,12 @@
 <div class="FlexContainerWrapper">
     <div class="FlexContainer">
         <div class="FlexItem">
-            <h1 class="my-4" id="password" style="font-size:5vw"></h1>
-            <button class="js-copy-bob-btn">Set clipboard to BOB</button>
+            <table>
+                <tr>
+                    <td><h1 class="my-4" id="password" style="font-size:5vw"></h1></td>
+                    <td><button class="js-copy-bob-btn" id="copy"><img src="images/ic_content_copy_48px.png" alt="Copy"></button></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
@@ -60,8 +59,24 @@
         box-sizing: border-box;
         max-width: 90%;
     }
+    .js-copy-bob-btn {
+        width: 50px !important;
+        height: 50px !important;
+        background-color: white;
+        border-color: transparent;
+    }
 
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
 
+    table {
+    }
+
+    td {
+        border-spacing: 10px;
+    }
 </style>
 
 <!-- Bootstrap core JavaScript -->
@@ -70,22 +85,26 @@
 
 
 <script>
-    let passwordField = document.getElementById("password");
-    passwordField.innerText = "Banana";
-    let password = "";
-    let array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    function generatePassword() {
+        let passwordField = document.getElementById("password");
+        passwordField.innerText = "Banana";
+        let password = "";
+        let array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-    for (let i=0; i<16; i++) {
-        let randomNumber = Math.random()*array.length-1;
-        let random = parseInt(randomNumber);
-        password += array[random];
+        for (let i=0; i<16; i++) {
+            let randomNumber = Math.random()*array.length-1;
+            let random = parseInt(randomNumber);
+            password += array[random];
 
+        }
+        passwordField.innerText = password;
     }
-    passwordField.innerText = password.replace("\n", "");
+
+    generatePassword();
 
     function fallbackCopyTextToClipboard(text) {
-        var textArea = document.createElement("textarea");
+        let textArea = document.createElement("textarea");
         textArea.value = text;
         document.body.appendChild(textArea);
         textArea.focus();
@@ -118,8 +137,6 @@
     copyBobBtn.addEventListener('click', function(event) {
         copyTextToClipboard(passwordField.innerText);
     });
-
-
 </script>
 
 </body>
