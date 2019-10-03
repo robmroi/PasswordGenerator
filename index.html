@@ -26,7 +26,7 @@
         <div class="FlexItem">
             <table>
                 <tr>
-                    <td><h1 class="my-4" id="password" style="font-size:5vw"></h1></td>
+                    <td><h1 class="my-4" id="password" style="font-size:5vw" onclick="generatePassword()"></h1></td>
                     <td><button class="js-copy-bob-btn" id="copy"><img src="images/Copy.png" alt="Copy"></button></td>
                 </tr>
             </table>
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<button onclick="openSettings()" class="settingsButton"><img src="images/Settings.png" alt="Copy"></button>
+<button class="settingsButton"><a href="settings/index.html"><img src="images/Settings.png" alt="Settings"></a></button>
 
 
 <style>
@@ -108,7 +108,8 @@
         let password = "";
         let array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+            ",", ".", ":", "!", "?"];
 
         for (let i=0; i<16; i++) {
             let randomNumber = Math.random()*array.length-1;
@@ -158,6 +159,12 @@
     });
 </script>
 
+<script>
+    function openSettings() {
+        //window.open("settings/index.html")
+    }
+</script>
+
 <script type="text/javascript">
     $(document).keypress(function(event) {
         let char = String.fromCharCode(event.which).toUpperCase();
@@ -174,12 +181,6 @@
                 break;
         }
     });
-</script>
-
-<script>
-    function openSettings() {
-
-    }
 </script>
 
 </body>
