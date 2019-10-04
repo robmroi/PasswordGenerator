@@ -49,7 +49,7 @@
         <h2>Other</h2>
         <table>
             <tr>
-                <td><input type="checkbox" id="darkmodeInput" onclick="changeToDarkmode()"></td>
+                <td><input type="checkbox" id="darkmodeInput" onclick="changeMode()"></td>
                 <td><h5 class="checkboxText">Darkmode</h5></td>
             </tr>
         </table>
@@ -86,35 +86,30 @@
     }
 </style>
 
-
 <script>
     let slider = document.getElementById("lengthInput");
     let output = document.getElementById("lengthOutput");
 
-    output.innerHTML = slider.value; // Display the default slider value
+    let smallAlphabetInput = document.getElementById("smallAlphabetInput");
+    let bigAlphabetInput = document.getElementById("bigAlphabetInput");
+    let numbersInput = document.getElementById("numbersInput");
+    let specialCharsInput = document.getElementById("specialCharsInput");
+    let othersInput = document.getElementById("othersInput");
 
-    // Update the current slider value (each time you drag the slider handle)
+    let darkmodeInput = document.getElementById("darkmodeInput");
+</script>
+
+
+
+<script>
     slider.oninput = function () {
         output.innerHTML = slider.value;
     };
-
-    function saveLength() {
-
-    }
 </script>
 
 <script>
-    function saveChars() {
-
-    }
-</script>
-
-<script>
-    let isInDarkmode = false;
-
-    function changeToDarkmode() {
-        isInDarkmode = !isInDarkmode;
-        if (isInDarkmode) {
+    function changeMode() {
+        if (darkmodeInput.checked) {
             document.body.style.backgroundColor = "black";
             document.body.style.color = "white";
         } else {
@@ -126,9 +121,48 @@
 
 <script>
     function save() {
-        saveLength();
-        saveChars();
+        localStorage.setItem("length", slider.value);
+        localStorage.setItem("darkmode", darkmodeInput.checked);
+
+        localStorage.setItem("smallAlphabet", smallAlphabetInput.checked);
+        localStorage.setItem("bigAlphabet", bigAlphabetInput.checked);
+        localStorage.setItem("numbers", numbersInput.checked);
+        localStorage.setItem("specialChars", specialCharsInput.checked);
+        localStorage.setItem("others", othersInput.checked);
     }
+</script>
+
+
+<script>
+    let lengthString = localStorage.getItem("length");
+    let length = lengthString != null ? parseInt(lengthString) : 16;
+    output.innerHTML = length;
+    slider.value = length;
+
+    let darkmodeString = localStorage.getItem("darkmode");
+    let darkmode = darkmodeString != null && darkmodeString === "true";
+    darkmodeInput.checked = darkmode;
+    changeMode();
+
+    let smallAlphabetString = localStorage.getItem("smallAlphabet");
+    let smallAlphabet = smallAlphabetString != null && smallAlphabetString === "true";
+    smallAlphabetInput.checked = smallAlphabet;
+
+    let bigAlphabetString = localStorage.getItem("bigAlphabet");
+    let bigAlphabet = bigAlphabetString != null && bigAlphabetString === "true";
+    bigAlphabetInput.checked = bigAlphabet;
+
+    let numbersString = localStorage.getItem("numbers");
+    let numbers = numbersString != null && numbersString === "true";
+    numbersInput.checked = numbers;
+
+    let specialCharsString = localStorage.getItem("specialChars");
+    let specialChars = specialCharsString != null && specialCharsString === "true";
+    specialCharsInput.checked = specialChars;
+
+    let othersString = localStorage.getItem("others");
+    let others = othersString != null && othersString === "true";
+    othersInput.checked = others;
 </script>
 
 

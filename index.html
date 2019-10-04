@@ -111,7 +111,7 @@
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
             ",", ".", ":", "!", "?"];
 
-        for (let i=0; i<16; i++) {
+        for (let i=0; i<length; i++) {
             let randomNumber = Math.random()*array.length-1;
             let random = parseInt(randomNumber);
             password += array[random];
@@ -119,8 +119,6 @@
         }
         passwordField.innerText = password;
     }
-
-    generatePassword();
 
     function fallbackCopyTextToClipboard(text) {
         let textArea = document.createElement("textarea");
@@ -181,6 +179,13 @@
                 break;
         }
     });
+</script>
+
+<script>
+    let lengthString = localStorage.getItem("length");
+    let length = lengthString != null ? parseInt(lengthString) : 16;
+    generatePassword();
+
 </script>
 
 </body>
