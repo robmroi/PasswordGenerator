@@ -27,14 +27,14 @@
             <table>
                 <tr>
                     <td><h1 class="my-4" id="password" style="font-size:5vw" onclick="generatePassword()"></h1></td>
-                    <td><button class="js-copy-bob-btn" id="copy"><img src="images/Copy.png" alt="Copy"></button></td>
+                    <td><button class="js-copy-bob-btn" id="copy"><img src="images/Copy_light.png" alt="Copy" id="copyImage"></button></td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
 
-<button class="settingsButton"><a href="settings/index.html"><img src="images/Settings.png" alt="Settings"></a></button>
+<button class="settingsButton" id="settingsButton"><a href="settings/index.html"><img src="images/Settings_light.png" alt="Settings" id="settingsImage"></a></button>
 
 
 <style>
@@ -62,10 +62,10 @@
         box-sizing: border-box;
         max-width: 90%;
     }
+
     .js-copy-bob-btn {
         width: 50px !important;
         height: 50px !important;
-        background-color: white;
         border: none;
     }
 
@@ -74,18 +74,17 @@
         max-height: 100%;
     }
 
-    table {
-    }
-
     td {
         border-spacing: 10px;
+    }
+
+    button {
+        background-color: transparent;
     }
 
     .settingsButton {
         width: 50px !important;
         height: 50px !important;
-
-        background-color: white;
 
         border: none;
         border-radius: 5px;
@@ -103,14 +102,10 @@
 
 <script>
     function generatePassword() {
+        console.log(array);
         let passwordField = document.getElementById("password");
         passwordField.innerText = "Banana";
         let password = "";
-        let array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-            "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
-            ",", ".", ":", "!", "?"];
-
         for (let i=0; i<length; i++) {
             let randomNumber = Math.random()*array.length-1;
             let random = parseInt(randomNumber);
@@ -158,8 +153,26 @@
 </script>
 
 <script>
-    function openSettings() {
-        //window.open("settings/index.html")
+    let darkmodeString = localStorage.getItem("darkmode");
+    let darkmode = darkmodeString != null && darkmodeString === "true";
+
+    let copyImage = document.getElementById("copyImage");
+    let settingsImage = document.getElementById("settingsImage");
+    changeMode();
+
+    function changeMode() {
+        if (darkmode) {
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+            settingsImage.src="images/Settings_dark.png";
+            copyImage.src="images/Copy_dark.png";
+        } else {
+            document.body.style.backgroundColor = "white";
+            document.body.style.color = "black";
+            settingsImage.src="images/Settings_light.png";
+            copyImage.src="images/Copy_light.png";
+
+        }
     }
 </script>
 
@@ -182,10 +195,47 @@
 </script>
 
 <script>
+    let smallAlphabetArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    let bigAlphabetArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    let numbersArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    let specialChars = [",", ".", ":", "!", "?"];
+</script>
+
+<script>
     let lengthString = localStorage.getItem("length");
     let length = lengthString != null ? parseInt(lengthString) : 16;
-    generatePassword();
 
+    let array = [];
+
+    let smallAlphabetString = localStorage.getItem("smallAlphabet");
+    if (smallAlphabetString != null && smallAlphabetString === "true") {
+        array += smallAlphabetArray;
+    }
+
+    let bigAlphabetString = localStorage.getItem("bigAlphabet");
+    if (bigAlphabetString != null && bigAlphabetString === "true") {
+        array += bigAlphabetArray
+    }
+
+    let numbersString = localStorage.getItem("numbers");
+    if (numbersString != null && numbersString === "true") {
+        for (element in numbersArray) {
+            console.log(element)
+        }
+        console.log(" ");
+        array += numbersArray;
+        for (element in array) {
+            console.log(element)
+        }
+    }
+
+    let specialCharsString = localStorage.getItem("specialChars");
+    if (specialCharsString != null && specialCharsString === "true") {
+        console.log("Adds special chars");
+        array += specialChars
+    }
+
+    generatePassword();
 </script>
 
 </body>
