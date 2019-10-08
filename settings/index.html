@@ -15,7 +15,7 @@
 
     <div class="element">
         <h2>Length</h2>
-        <input type="range" min="2" max="30" value="16" class="slider" id="lengthInput">
+        <label for="lengthInput"></label><input type="range" min="2" max="30" value="16" class="slider" id="lengthInput">
         <h5 id="lengthOutput"></h5>
     </div>
 
@@ -23,23 +23,23 @@
         <h2>Chars</h2>
         <table>
             <tr>
-                <td><input type="checkbox" id="smallAlphabetInput"></td>
+                <td><label for="smallAlphabetInput"></label><input type="checkbox" id="smallAlphabetInput"></td>
                 <td><h5 class="checkboxText">Alphabet (lowercased)</h5></td>
             </tr>
             <tr>
-                <td><input type="checkbox" id="bigAlphabetInput"></td>
+                <td><label for="bigAlphabetInput"></label><input type="checkbox" id="bigAlphabetInput"></td>
                 <td><h5 class="checkboxText">Alphabet (uppercased)</h5></td>
             </tr>
             <tr>
-                <td><input type="checkbox" id="numbersInput"></td>
+                <td><label for="numbersInput"></label><input type="checkbox" id="numbersInput"></td>
                 <td><h5 class="checkboxText">Numbers</h5></td>
             </tr>
             <tr>
-                <td><input type="checkbox" id="specialCharsInput"></td>
+                <td><label for="specialCharsInput"></label><input type="checkbox" id="specialCharsInput"></td>
                 <td><h5 class="checkboxText">Special Chars ("!", ",", ".", "?", etc)</h5></td>
             </tr>
             <tr>
-                <td><input type="checkbox" id="othersInput"></td>
+                <td><label for="othersInput"></label><input type="checkbox" id="othersInput"></td>
                 <td><h5 class="checkboxText">Your Own: COMING SOON</h5></td>
             </tr>
         </table>
@@ -49,7 +49,7 @@
         <h2>Other</h2>
         <table>
             <tr>
-                <td><input type="checkbox" id="darkmodeInput" onclick="changeMode()"></td>
+                <td><label for="darkmodeInput"></label><input type="checkbox" id="darkmodeInput" onclick="changeMode()"></td>
                 <td><h5 class="checkboxText">Darkmode</h5></td>
             </tr>
         </table>
@@ -87,16 +87,12 @@
 </style>
 
 <script>
-    let slider = document.getElementById("lengthInput");
-    let output = document.getElementById("lengthOutput");
-
-    let smallAlphabetInput = document.getElementById("smallAlphabetInput");
-    let bigAlphabetInput = document.getElementById("bigAlphabetInput");
-    let numbersInput = document.getElementById("numbersInput");
-    let specialCharsInput = document.getElementById("specialCharsInput");
-    let othersInput = document.getElementById("othersInput");
-
-    let darkmodeInput = document.getElementById("darkmodeInput");
+    let slider = document.getElementById("lengthInput"), output = document.getElementById("lengthOutput"),
+        smallAlphabetInput = document.getElementById("smallAlphabetInput"),
+        bigAlphabetInput = document.getElementById("bigAlphabetInput"),
+        numbersInput = document.getElementById("numbersInput"),
+        specialCharsInput = document.getElementById("specialCharsInput"),
+        othersInput = document.getElementById("othersInput"), darkmodeInput = document.getElementById("darkmodeInput");
 </script>
 
 

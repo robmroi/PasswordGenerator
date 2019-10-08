@@ -150,7 +150,7 @@
 
     let copyBobBtn = document.querySelector('.js-copy-bob-btn');
 
-    copyBobBtn.addEventListener('click', function (event) {
+    copyBobBtn.addEventListener('click', function () {
         let passwordField = document.getElementById("password");
         copyTextToClipboard(passwordField.innerText);
     });
@@ -190,9 +190,6 @@
                 break;
             case "R":
                 generatePassword();
-                break;
-            case "S":
-                openSettings();
                 break;
         }
     });
