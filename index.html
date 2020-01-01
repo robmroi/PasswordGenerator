@@ -234,6 +234,11 @@
             Array.prototype.push.apply(array, specialCharsArray);
             Array.prototype.push.apply(array, specialCharsArray);
         }
+
+        if (array.length === 0) {
+            localStorage.setItem("smallAlphabet", true);
+            Array.prototype.push.apply(array, smallAlphabetArray);
+        }
     }
 
     loadArray();
